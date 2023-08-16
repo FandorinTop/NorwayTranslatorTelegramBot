@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorwayTranslatorTelegramBot", "NorwayTranslatorTelegramBot\NorwayTranslatorTelegramBot.csproj", "{E529DC62-3571-48A2-8D83-51BE5391B7CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramPipeline", "TelegramPipeline\TelegramPipeline.csproj", "{1E80E9DE-9F91-4A3B-918C-BE91E937B70A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WEB", "WEB", "{776F17FB-290F-4450-9241-376CC69BA2E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CacheDomainContext", "CacheDbContext\CacheDomainContext.csproj", "{6758B8AC-1794-47B1-95B3-D299AFE0BD0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramPipeline.Interfaces", "TelegramPipeline.Interfaces\TelegramPipeline.Interfaces.csproj", "{CF1112D2-AC20-4778-B366-E3186945B39F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramTranslator.Common", "TelegramTranslator.Common\TelegramTranslator.Common.csproj", "{8036F923-2434-4537-9FDB-9291DC4C6A8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslatorPipeline.Services", "TranslatorPipeline.Services\TranslatorPipeline.Services.csproj", "{95E8AAE0-1781-4F18-B144-2569B5A8895A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E529DC62-3571-48A2-8D83-51BE5391B7CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E529DC62-3571-48A2-8D83-51BE5391B7CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E529DC62-3571-48A2-8D83-51BE5391B7CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E529DC62-3571-48A2-8D83-51BE5391B7CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E80E9DE-9F91-4A3B-918C-BE91E937B70A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E80E9DE-9F91-4A3B-918C-BE91E937B70A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E80E9DE-9F91-4A3B-918C-BE91E937B70A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E80E9DE-9F91-4A3B-918C-BE91E937B70A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6758B8AC-1794-47B1-95B3-D299AFE0BD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6758B8AC-1794-47B1-95B3-D299AFE0BD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6758B8AC-1794-47B1-95B3-D299AFE0BD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6758B8AC-1794-47B1-95B3-D299AFE0BD0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF1112D2-AC20-4778-B366-E3186945B39F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF1112D2-AC20-4778-B366-E3186945B39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF1112D2-AC20-4778-B366-E3186945B39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF1112D2-AC20-4778-B366-E3186945B39F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8036F923-2434-4537-9FDB-9291DC4C6A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8036F923-2434-4537-9FDB-9291DC4C6A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8036F923-2434-4537-9FDB-9291DC4C6A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8036F923-2434-4537-9FDB-9291DC4C6A8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E8AAE0-1781-4F18-B144-2569B5A8895A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E8AAE0-1781-4F18-B144-2569B5A8895A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E8AAE0-1781-4F18-B144-2569B5A8895A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E8AAE0-1781-4F18-B144-2569B5A8895A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EC6F361-DBB5-4EDF-9424-47CEB318A4A0}
+	EndGlobalSection
+EndGlobal
