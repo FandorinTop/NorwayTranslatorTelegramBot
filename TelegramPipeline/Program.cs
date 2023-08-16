@@ -13,7 +13,7 @@ namespace TelegramPipeline
 {
     internal partial class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
             var configurationBuilder = GetConfigurationBuilder();
             var Configuration = configurationBuilder.Build();

@@ -11,7 +11,7 @@ namespace TelegramPipeline.Pipelines
         private class DelegaTypeMessageHandler { }
         private IServiceProvider _serviceProvider = default!;
         private readonly IServiceCollection _serviceCollection;
-        private List<(Type, Func<TelegramContext, Func<Task>, Task>)> Handlers = new List<(Type, Func<TelegramContext, Func<Task>, Task>)>();
+        private readonly List<(Type, Func<TelegramContext, Func<Task>, Task>)> Handlers = new();
 
         public TelegramMessagePipeline(IServiceCollection serviceCollection)
         {
@@ -49,9 +49,7 @@ namespace TelegramPipeline.Pipelines
                 }
                 else
                 {
-                    var service = _serviceProvider.GetService(handler.Item1) as ITelegramMiddleware;
-
-                    if (service is null)
+                    if (_serviceProvider.GetService(handler.Item1) is not ITelegramMiddleware service)
                     {
                         throw new TGArgumentNullException($"Service not registred {handler}");
                     }

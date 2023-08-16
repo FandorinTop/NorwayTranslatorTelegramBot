@@ -19,7 +19,7 @@ namespace NorwayTranslatorTelegramBot.TextToSpeech
             return ExtractBytesIfSuccess(speechSynthesisResult);
         }
 
-        private byte[] ExtractBytesIfSuccess(SpeechSynthesisResult speechSynthesisResult)
+        private static byte[] ExtractBytesIfSuccess(SpeechSynthesisResult speechSynthesisResult)
         {
             switch (speechSynthesisResult.Reason)
             {
@@ -43,12 +43,10 @@ namespace NorwayTranslatorTelegramBot.TextToSpeech
             }
         }
 
-        private async Task<SpeechSynthesisResult> TextToSpeechAsync(string text, SpeechConfig speechConfig)
+        private async static Task<SpeechSynthesisResult> TextToSpeechAsync(string text, SpeechConfig speechConfig)
         {
-            using (var speechSynthesizer = new SpeechSynthesizer(speechConfig))
-            {
-                return await speechSynthesizer.SpeakTextAsync(text);
-            }
+            using var speechSynthesizer = new SpeechSynthesizer(speechConfig);
+            return await speechSynthesizer.SpeakTextAsync(text);
 
         }
     }

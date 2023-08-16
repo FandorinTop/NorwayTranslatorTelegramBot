@@ -10,7 +10,7 @@
             await s.CopyToAsync(fs);
         }
 
-        static Task Main(string[] args)
+        static Task Main()
         {
             return Task.CompletedTask;
         }

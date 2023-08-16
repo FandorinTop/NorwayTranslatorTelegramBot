@@ -5,16 +5,16 @@ namespace TelegramPipeline.Responces
 {
     public class TelegramErrorResponceMessage : ITelegramResponceMessage
     {
-        public string errorMessage { get; }
+        public string ErrorMessage { get; }
 
         public TelegramErrorResponceMessage(string errorMessage)
         {
-            this.errorMessage = errorMessage;
+            this.ErrorMessage = errorMessage;
         }
 
         public Task<Message> SendAsync(ITelegramBotClient sender, ChatId chatId, int? replyToMessageId = null)
         {
-            return sender.SendTextMessageAsync(chatId, errorMessage, replyToMessageId: replyToMessageId);
+            return sender.SendTextMessageAsync(chatId, ErrorMessage, replyToMessageId: replyToMessageId);
         }
     }
 }
