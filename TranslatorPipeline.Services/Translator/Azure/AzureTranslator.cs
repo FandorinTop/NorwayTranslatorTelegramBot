@@ -1,4 +1,5 @@
-﻿using NorwayTranslatorTelegramBot.Translator.Azure.Languages;
+﻿using NorwayTranslatorTelegramBot.Entities;
+using NorwayTranslatorTelegramBot.Translator.Azure.Languages;
 using NorwayTranslatorTelegramBot.ViewModel.Translator;
 using System.Net.Http.Json;
 
@@ -7,7 +8,7 @@ namespace NorwayTranslatorTelegramBot.Translator.Azure
     public class AzureTranslator : ITranslator
     {
         private readonly HttpClient _httpClient;
-        private readonly Dictionary<Entities.Language, IAzureToLanguageRequestFactory> AwailableLanguages = new Dictionary<Entities.Language, IAzureToLanguageRequestFactory>();
+        private readonly Dictionary<Language, IAzureToLanguageRequestFactory> AwailableLanguages = new Dictionary<Language, IAzureToLanguageRequestFactory>();
 
         public AzureTranslator(HttpClient httpClient, IEnumerable<IAzureToLanguageRequestFactory> awailableTrablators)
         {
@@ -26,10 +27,12 @@ namespace NorwayTranslatorTelegramBot.Translator.Azure
             }
         }
 
-        public async Task<TranslationResult> TranslateAsync(string text, Entities.Language toLanguage)
+        public async Task<TranslationResult> TranslateAsync(string text, Language toLanguage)
         {
             if (!AwailableLanguages.ContainsKey(toLanguage))
-                throw new NotImplementedException();
+                throw new NotImplementedException($"Language: ({toLanguage}) is not supported by current translator");
+                //TODO REPLACE WITH OWN EXCEPTION
+                //throw new NotImplementedException($"Language: ({toLanguage}) is not supported by current translator");
 
             var requestMessage = AwailableLanguages[toLanguage].Create(text);
             var translationResponce = await _httpClient.SendAsync(requestMessage);
