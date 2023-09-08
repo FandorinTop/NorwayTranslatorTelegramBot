@@ -32,13 +32,6 @@ namespace TelegramPipeline.Pipelines
         {
             var root = new Chain(new ExecutionTimeMiddleware());
             var current = root;
-
-            foreach (var handler in Handlers)
-            {
-                if (handler.Item1.GetInterface(nameof(ITelegramMiddleware)) is not null)
-                    _serviceCollection.AddTransient(handler.Item1);
-            }
-
             _serviceProvider = _serviceCollection.BuildServiceProvider();
 
             foreach (var handler in Handlers)
