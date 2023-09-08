@@ -1,7 +1,9 @@
 ﻿using NorwayTranslatorTelegramBot.Entities;
 using NorwayTranslatorTelegramBot.Translator.Azure.Languages;
 using NorwayTranslatorTelegramBot.ViewModel.Translator;
+using System.Net;
 using System.Net.Http.Json;
+using System.Runtime.Serialization;
 
 namespace NorwayTranslatorTelegramBot.Translator.Azure
 {
@@ -31,8 +33,6 @@ namespace NorwayTranslatorTelegramBot.Translator.Azure
         {
             if (!AwailableLanguages.ContainsKey(toLanguage))
                 throw new NotImplementedException($"Language: ({toLanguage}) is not supported by current translator");
-                //TODO REPLACE WITH OWN EXCEPTION
-                //throw new NotImplementedException($"Language: ({toLanguage}) is not supported by current translator");
 
             var requestMessage = AwailableLanguages[toLanguage].Create(text);
             var translationResponce = await _httpClient.SendAsync(requestMessage);
@@ -43,8 +43,32 @@ namespace NorwayTranslatorTelegramBot.Translator.Azure
                 return translationResult?.First() ?? new TranslationResult();
             }
 
-            //TODO REPLACE
-            throw new Exception();
+            throw new TranslationRequestException(
+                exceptionMessage: $"Called translation to language: '{toLanguage}', requested text message: ('{text}')",
+                responseCode: translationResponce.StatusCode,
+                requestUri: requestMessage.RequestUri!.ToString(),
+                responceAsText: await translationResponce.Content.ReadAsStringAsync()
+                );
+        }
+
+        public class TranslationRequestException : Exception
+        {
+            public TranslationRequestException(
+                string exceptionMessage,
+                HttpStatusCode responseCode,
+                string requestUri,
+                string responceAsText
+                ) 
+                : base(exceptionMessage)
+            {
+                ResponseCode = responseCode;
+                RequestUri = requestUri ?? throw new ArgumentNullException(nameof(requestUri));
+                ResponceAsText = responceAsText ?? throw new ArgumentNullException(nameof(responceAsText));
+            }
+
+            public HttpStatusCode ResponseCode { get; }
+            public string RequestUri { get; }
+            public string ResponceAsText { get; }
         }
     }
 }

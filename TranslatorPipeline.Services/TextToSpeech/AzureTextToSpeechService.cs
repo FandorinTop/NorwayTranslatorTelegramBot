@@ -1,5 +1,6 @@
 ﻿using Microsoft.CognitiveServices.Speech;
 using NorwayTranslatorTelegramBot.TextToSpeech.Azure;
+using System.Runtime.InteropServices;
 
 namespace NorwayTranslatorTelegramBot.TextToSpeech
 {
@@ -27,19 +28,22 @@ namespace NorwayTranslatorTelegramBot.TextToSpeech
                     return speechSynthesisResult.AudioData;
                 case ResultReason.Canceled:
                     var cancellation = SpeechSynthesisCancellationDetails.FromResult(speechSynthesisResult);
-                    Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
 
                     if (cancellation.Reason == CancellationReason.Error)
                     {
-                        Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
-                        Console.WriteLine($"CANCELED: ErrorDetails=[{cancellation.ErrorDetails}]");
-                        Console.WriteLine($"CANCELED: Did you set the speech resource key and region values?");
+                        throw new AzureSpeechSynthesisException(
+                            "Azure Speech Synthesis cancelation error",
+                            cancellation.ErrorCode.ToString(),
+                            cancellation.ErrorDetails);
                     }
-                    //TODO replace
-                    throw new Exception("");
+
+                    throw new AzureSpeechSynthesisException(
+                        "Azure Speech Synthesis cancelate", 
+                        cancellation.ErrorCode.ToString(),
+                        cancellation.ErrorDetails,
+                        speechSynthesisResult.Reason.ToString());
                 default:
-                    //TODO replace
-                    throw new NotImplementedException();
+                    throw new NotImplementedException($"Current ResultReason is not implemented: {speechSynthesisResult.Reason}");
             }
         }
 
@@ -48,6 +52,26 @@ namespace NorwayTranslatorTelegramBot.TextToSpeech
             using var speechSynthesizer = new SpeechSynthesizer(speechConfig);
             return await speechSynthesizer.SpeakTextAsync(text);
 
+        }
+
+        public class AzureSpeechSynthesisException : Exception
+        {
+            public AzureSpeechSynthesisException(
+                string message,
+                string errorCode,
+                string errorDetail,
+                string resultReason = "Canceled"
+                ) : base(message)
+            {
+                ErrorCode = errorCode;
+                ErrorDetail = errorDetail;
+                ResultReason = resultReason;
+            }
+
+
+            public string ResultReason { get; } 
+            public string ErrorCode { get; }
+            public string ErrorDetail { get; }
         }
     }
 }
