@@ -23,7 +23,7 @@ namespace TelegramPipeline.Pipelines
             Handlers.Add(new(typeof(DelegaTypeMessageHandler), func));
         }
 
-        public void AddMiddleware<T>()
+        public void AddMiddleware<T>() where T : ITelegramMiddleware
         {
             Handlers.Add(new(typeof(T), (context, next) => Task.CompletedTask));
         }
@@ -42,9 +42,11 @@ namespace TelegramPipeline.Pipelines
                 }
                 else
                 {
-                    if (_serviceProvider.GetService(handler.Item1) is not ITelegramMiddleware service)
+                    var service = _serviceProvider.GetService(handler.Item1) as ITelegramMiddleware;
+
+                    if (service is null)
                     {
-                        throw new TGArgumentNullException($"Service not registred {handler}");
+                        throw new TGArgumentNullException($"Service not registred {handler.Item1}");
                     }
 
                     current = current.SetNext(service);
