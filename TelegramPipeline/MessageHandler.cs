@@ -37,25 +37,32 @@ namespace TelegramPipeline
         //TODO throw if canceled
         public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
-            var request = update.Message;
+            try
+            {
+                var request = update.Message;
 
-            if (request is null)
-                return;
+                if (request is null)
+                    return;
 
-            var context = new TelegramContext(request);
-            await pipeline.ProcessMessageAsync(context, cancellationToken);
+                var context = new TelegramContext(request);
+                await pipeline.ProcessMessageAsync(context, cancellationToken);
 
-            if (cancellationToken.IsCancellationRequested)
-                return;
+                if (cancellationToken.IsCancellationRequested)
+                    return;
 
-            var resultDictionary = await SendMessagesAsync(botClient, context);
+                var resultDictionary = await SendMessagesAsync(botClient, context);
 
-            if (cancellationToken.IsCancellationRequested)
-                return;
+                if (cancellationToken.IsCancellationRequested)
+                    return;
 
-            if (resultDictionary.Any())
-                foreach (var viewer in messageViewers)
-                    await viewer.ViewResultAsync(request, resultDictionary);
+                if (resultDictionary.Any())
+                    foreach (var viewer in messageViewers)
+                        await viewer.ViewResultAsync(request, resultDictionary);
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
 
         private async Task<IReadOnlyDictionary<ITelegramResponceMessage, Message>> SendMessagesAsync(ITelegramBotClient botClient, TelegramContext context)
