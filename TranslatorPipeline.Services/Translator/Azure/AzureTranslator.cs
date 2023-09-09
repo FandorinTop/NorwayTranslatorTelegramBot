@@ -4,6 +4,7 @@ using NorwayTranslatorTelegramBot.ViewModel.Translator;
 using System.Net;
 using System.Net.Http.Json;
 using System.Runtime.Serialization;
+using TelegramTranslator.Common;
 
 namespace NorwayTranslatorTelegramBot.Translator.Azure
 {
@@ -49,26 +50,6 @@ namespace NorwayTranslatorTelegramBot.Translator.Azure
                 requestUri: requestMessage.RequestUri!.ToString(),
                 responceAsText: await translationResponce.Content.ReadAsStringAsync()
                 );
-        }
-
-        public class TranslationRequestException : Exception
-        {
-            public TranslationRequestException(
-                string exceptionMessage,
-                HttpStatusCode responseCode,
-                string requestUri,
-                string responceAsText
-                ) 
-                : base(exceptionMessage)
-            {
-                ResponseCode = responseCode;
-                RequestUri = requestUri ?? throw new ArgumentNullException(nameof(requestUri));
-                ResponceAsText = responceAsText ?? throw new ArgumentNullException(nameof(responceAsText));
-            }
-
-            public HttpStatusCode ResponseCode { get; }
-            public string RequestUri { get; }
-            public string ResponceAsText { get; }
         }
     }
 }

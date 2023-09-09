@@ -1,6 +1,7 @@
 ﻿using Microsoft.CognitiveServices.Speech;
 using NorwayTranslatorTelegramBot.TextToSpeech.Azure;
 using System.Runtime.InteropServices;
+using TelegramTranslator.Common;
 
 namespace NorwayTranslatorTelegramBot.TextToSpeech
 {
@@ -51,27 +52,6 @@ namespace NorwayTranslatorTelegramBot.TextToSpeech
         {
             using var speechSynthesizer = new SpeechSynthesizer(speechConfig);
             return await speechSynthesizer.SpeakTextAsync(text);
-
-        }
-
-        public class AzureSpeechSynthesisException : Exception
-        {
-            public AzureSpeechSynthesisException(
-                string message,
-                string errorCode,
-                string errorDetail,
-                string resultReason = "Canceled"
-                ) : base(message)
-            {
-                ErrorCode = errorCode;
-                ErrorDetail = errorDetail;
-                ResultReason = resultReason;
-            }
-
-
-            public string ResultReason { get; } 
-            public string ErrorCode { get; }
-            public string ErrorDetail { get; }
         }
     }
 }
