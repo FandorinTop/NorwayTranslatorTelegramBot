@@ -34,7 +34,6 @@ namespace TelegramPipeline
             return Task.CompletedTask;
         }
 
-        //TODO throw if canceled
         public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             try
@@ -47,13 +46,11 @@ namespace TelegramPipeline
                 var context = new TelegramContext(request);
                 await pipeline.ProcessMessageAsync(context, cancellationToken);
 
-                if (cancellationToken.IsCancellationRequested)
-                    return;
+                cancellationToken.ThrowIfCancellationRequested();
 
                 var resultDictionary = await SendMessagesAsync(botClient, context);
 
-                if (cancellationToken.IsCancellationRequested)
-                    return;
+                cancellationToken.ThrowIfCancellationRequested();
 
                 if (resultDictionary.Any())
                     foreach (var viewer in messageViewers)
