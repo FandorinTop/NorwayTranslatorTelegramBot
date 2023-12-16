@@ -15,7 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramPipeline.Interfaces
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramTranslator.Common", "TelegramTranslator.Common\TelegramTranslator.Common.csproj", "{8036F923-2434-4537-9FDB-9291DC4C6A8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslatorPipeline.Services", "TranslatorPipeline.Services\TranslatorPipeline.Services.csproj", "{95E8AAE0-1781-4F18-B144-2569B5A8895A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TranslatorPipeline.Services", "TranslatorPipeline.Services\TranslatorPipeline.Services.csproj", "{95E8AAE0-1781-4F18-B144-2569B5A8895A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramTranslator.Dictionary", "TelegramTranslator.Dictionary\TelegramTranslator.Dictionary.csproj", "{ABCB082F-E373-423E-8ED9-43F41922077A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dictionary", "Dictionary", "{EA529E13-967A-4F84-8672-8FDD3663CA43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramTranslator.Dictionary.ReversoContext.HtmlParser", "TelegramTranslator.Dictionary.ReversoContext.HtmlParser\TelegramTranslator.Dictionary.ReversoContext.HtmlParser.csproj", "{EE4D227D-790E-47D6-AA8B-46E9AE313C7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,9 +53,21 @@ Global
 		{95E8AAE0-1781-4F18-B144-2569B5A8895A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95E8AAE0-1781-4F18-B144-2569B5A8895A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95E8AAE0-1781-4F18-B144-2569B5A8895A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABCB082F-E373-423E-8ED9-43F41922077A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABCB082F-E373-423E-8ED9-43F41922077A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABCB082F-E373-423E-8ED9-43F41922077A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABCB082F-E373-423E-8ED9-43F41922077A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE4D227D-790E-47D6-AA8B-46E9AE313C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE4D227D-790E-47D6-AA8B-46E9AE313C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4D227D-790E-47D6-AA8B-46E9AE313C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE4D227D-790E-47D6-AA8B-46E9AE313C7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ABCB082F-E373-423E-8ED9-43F41922077A} = {EA529E13-967A-4F84-8672-8FDD3663CA43}
+		{EE4D227D-790E-47D6-AA8B-46E9AE313C7E} = {EA529E13-967A-4F84-8672-8FDD3663CA43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EC6F361-DBB5-4EDF-9424-47CEB318A4A0}
